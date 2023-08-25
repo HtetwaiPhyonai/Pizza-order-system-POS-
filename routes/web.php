@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\AuthController;
+use Faker\Guesser\Name;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,9 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Route::middleware([
     'auth:sanctum',
@@ -26,3 +26,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+
+//login / Register
+
+Route::redirect('/' , 'loginPage');
+Route::get('loginPage', [AuthController::class , 'loginPage'])->name('auth#loginPage');
+Route::get('registerPage', [AuthController::class , 'registerPage'])->name('auth#registerPage');
