@@ -4,6 +4,10 @@
     <div class="login-form">
         <form action="{{ route('register') }}" method="post">
             @csrf
+
+            @error('terms')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
             <div class="form-group">
                 <label>Username @error('name')
                         <small class="text-danger">{{ $message }}</small>

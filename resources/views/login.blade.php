@@ -3,13 +3,19 @@
 
 @section('content')
     <div class="login-form">
-        <form action="" method="post">
+        <form action="{{route('login')}}" method="post">
+            @csrf
             <div class="form-group">
-                <label>Email Address</label>
+                <label>Email Address @error('email')
+                    <small class="text-danger">{{$message}}</small>
+                @enderror</label>
                 <input class="au-input au-input--full" type="email" name="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <label>Password</label>
+                <label>Password 
+                    <label>Email Address @error('password')
+                        <small class="text-danger">{{$message}}</small>
+                    @enderror</label>
                 <input class="au-input au-input--full" type="password" name="password" placeholder="Password">
             </div>
 
