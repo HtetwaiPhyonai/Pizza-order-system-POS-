@@ -32,7 +32,7 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     //Admin 
 
-    Route::group(['prefix' => 'category' , 'middleware'=>'admin_middleware'], function () {
+    Route::group(['prefix' => 'category' , 'middleware' =>'admin_middleware'], function () {
         Route::get('list', [CategoryController::class, 'list'])->name('catrgoty#list');
     });
 

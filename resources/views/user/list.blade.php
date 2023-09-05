@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title' , 'user_list')
+@section('title' , 'User Catrgory')
 @section('content')
     <h1>Hello this is user category!</h1>
 
