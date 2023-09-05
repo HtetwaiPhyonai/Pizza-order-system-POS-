@@ -34,6 +34,8 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
 
     Route::group(['prefix' => 'category' , 'middleware' =>'admin_middleware'], function () {
         Route::get('list', [CategoryController::class, 'list'])->name('catrgoty#list');
+        Route::get('create/page' , [CategoryController::class, 'createPage'])->name('category#create');
+        Route::post('create', [CategoryController::class , 'store' ])->name('category#store');
     });
 
 
