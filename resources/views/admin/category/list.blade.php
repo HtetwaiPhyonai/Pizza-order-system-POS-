@@ -55,7 +55,7 @@
                             <div class="account-wrap">
                                 <div class="account-item clearfix js-item-menu">
                                     <div class="image">
-                                        <img src="images/icon/avatar-01.jpg" alt="John Doe" />
+                                        <img src="{{ asset('admin/images/icon/avatar-01.jpg') }}" alt="John Doe" />
                                     </div>
                                     <div class="content">
                                         <a class="js-acc-btn" href="#">{{ Auth::user()->name }}</a>
@@ -102,13 +102,8 @@
         <div class="main-content">
             <div class="section__content section__content--p30">
                 <div class="container-fluid">
-                    <form class="form-header mb-2" action="" method="POST">
-                        <input class="au-input au-input--xl" type="text" name="search"
-                            placeholder="Search for datas &amp; reports..." />
-                        <button class="au-btn--submit" type="submit">
-                            <i class="zmdi zmdi-search"></i>
-                        </button>
-                    </form>
+
+
 
                     <div class="col-md-12">
                         <!-- DATA TABLE -->
@@ -130,45 +125,60 @@
                                 </button>
                             </div>
                         </div>
-                        <div class="table-responsive table-responsive-data2">
-                            <table class="table table-data2">
-                                <thead>
-                                    <tr>
-                                        <th>#Category Id</th>
-                                        <th>Categoty Name</th>
-                                        <th>Created Date</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($data as $item)
-                                        <tr class="tr-shadow">
-                                            <td>{{ $item->catrgory_id }}</td>
-                                            <td class="desc">{{ $item->name }}</td>
-                                            <td>{{ $item->created_at->format('j-F-Y') }}</td>
-                                            <td>
-                                                <div class="table-data-feature">
-                                                    <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="View">
-                                                        <i class="zmdi zmdi-eye"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="Edit">
-                                                        <i class="zmdi zmdi-edit"></i>
-                                                    </button>
-                                                    <button class="item" data-toggle="tooltip" data-placement="top"
-                                                        title="Delete">
-                                                        <i class="zmdi zmdi-delete"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
-                                            </td>
+                        <form class="form-header mb-2 justify-content-end" action="{{route('category#list')}}" value={{ request('searchKey') }} method="get">
+                            <input class="au-input au-input--md" type="text" name="searchKey"
+                                placeholder="Search for datas &amp; reports..." />
+                            <button class="au-btn--submit" type="submit">
+                                <i class="zmdi zmdi-search"></i>
+                            </button>
+                        </form>
+                        @if (count($data) != 0)
+                            <div class="table-responsive table-responsive-data2">
+                                <table class="table table-data2">
+                                    <thead>
+                                        <tr>
+                                            <th>#Category Id</th>
+                                            <th>Categoty Name</th>
+                                            <th>Created Date</th>
                                         </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                        <!-- END DATA TABLE -->
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($data as $item)
+                                            <tr class="tr-shadow">
+                                                <td>{{ $item->category_id }}</td>
+                                                <td class="desc">{{ $item->name }}</td>
+                                                <td>{{ $item->created_at->format('j-F-Y') }}</td>
+                                                <td>
+                                                    <div class="table-data-feature">
+                                                        <button class="item" data-toggle="tooltip" data-placement="top"
+                                                            title="View">
+                                                            <i class="zmdi zmdi-eye"></i>
+                                                        </button>
+                                                        <a href="{{route('category#edit' , $item->category_id)}}">
+                                                            <button class="item" data-toggle="tooltip" data-placement="top"
+                                                            title="Edit">
+                                                            <i class="zmdi zmdi-edit"></i>
+                                                        </button>
+                                                        </a>
+                                                        <a href="{{route('category#delete' , $item->category_id)}}">
+                                                            <button class="item" data-toggle="tooltip" data-placement="top"
+                                                            title="Delete">
+                                                            <i class="zmdi zmdi-delete"></i>
+                                                        </button>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- END DATA TABLE -->
                     </div>
+                @else
+                    <h4 class="text-dark text-center">There is no Data!</h4>
+                    @endif
                 </div>
             </div>
         </div>

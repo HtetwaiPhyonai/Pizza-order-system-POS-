@@ -50,7 +50,7 @@
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
                         <li>
-                            <a href="{{ route('catrgoty#list') }}">
+                            <a href="{{ route('category#list') }}">
                                 <i class="fas fa-chart-bar"></i>Category</a>
                         </li>
                     </ul>

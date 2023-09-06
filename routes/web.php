@@ -33,9 +33,12 @@ Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified',
     //Admin 
 
     Route::group(['prefix' => 'category' , 'middleware' =>'admin_middleware'], function () {
-        Route::get('list', [CategoryController::class, 'list'])->name('catrgoty#list');
+        Route::get('list', [CategoryController::class, 'list'])->name('category#list');
         Route::get('create/page' , [CategoryController::class, 'createPage'])->name('category#create');
         Route::post('create', [CategoryController::class , 'store' ])->name('category#store');
+        Route::get('edit/{id}' ,[ CategoryController::class , 'edit'])->name('category#edit');
+        Route::post('update/{id}' , [CategoryController::class , 'update'])->name('category#update');
+        Route::get('delete/{id}',[CategoryController::class , 'delete'])->name('category#delete');
     });
 
 
