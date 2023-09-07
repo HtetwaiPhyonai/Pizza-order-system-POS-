@@ -13,17 +13,12 @@ class CategoryController extends Controller
     //redirect catergoty list
     public function list()
     {
-<<<<<<< HEAD
         $data = Category::when(request('searchKey'), function ($query) {
             $searchKey = request('searchKey');
             $query->orWhere('name', 'like', '%' . $searchKey . '%');
         })
             ->orderBy('category_id', 'asc')->paginate(10);
         return view('admin.category.list', compact('data'));
-=======
-        $data = Category::orderBy('catrgory_id', 'asc')->get();
-        return view('admin.category.list' , compact('data'));
->>>>>>> main
     }
     //redirect category create list 
 
@@ -36,7 +31,6 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-<<<<<<< HEAD
         $validateData = $request->validate([
             'name' => 'required|unique:categories,name'
         ]);
@@ -76,13 +70,5 @@ class CategoryController extends Controller
         Category::where('category_id', $id)->delete();
 
         return back();
-=======
-       $validateData = $request->validate([
-        'name' => 'required|unique:categories,name'
-       ]);
-       Category::create([
-        'name' => $validateData['name']]);
-       return redirect()->route('catrgoty#list')->with('Create success....' , true);
->>>>>>> main
     }
 }

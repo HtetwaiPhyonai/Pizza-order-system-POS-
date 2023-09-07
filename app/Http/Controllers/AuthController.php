@@ -24,7 +24,7 @@ class AuthController extends Controller
     public function deshboard ()
     {
         if(Auth::user()->role === 'admin'){
-            return redirect()->route('catrgoty#list');
+            return redirect()->route('category#list');
         };
         return redirect()->route('user#list');
     }
